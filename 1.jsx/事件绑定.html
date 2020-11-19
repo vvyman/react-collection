@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script
+      src="https://unpkg.com/react@16/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super();
+
+          this.state = {
+            message: "hello",
+            counter: 0
+          };
+
+          this.handleClick = this.handleClick.bind(this);
+        }
+
+        render() {
+          return (
+            <div>
+              Counter: {this.state.counter}
+              {/* 
+                显式绑定 
+                <button onClick={this.handleClick.bind(this)}>button1</button>
+                <button onClick={this.handleClick.bind(this)}>button2</button>
+              */}
+              {/*
+                构造函数绑定
+              */}
+              <button onClick={this.handleClick}>button1</button>
+              <button onClick={this.handleClick}>button2</button>
+
+              {/*
+                使用箭头函数
+              */}
+              <button onClick={this.increment}>plus</button>
+              {/*
+                在箭头函数中之间传入函数执行
+              */}
+              <button onClick={() => { this.increment() }}>pluss</button>
+            </div>
+          );
+        }
+
+        handleClick() {
+          console.log(this.state.message);
+        }
+
+        increment = () => {
+          this.setState({
+            counter: this.state.counter + 1
+          })
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+  </body>
+</html>

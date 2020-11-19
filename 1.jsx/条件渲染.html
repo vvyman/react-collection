@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script
+      src="https://unpkg.com/react@16/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            isLogin: false
+          }         
+        }
+
+        render() {
+          const { isLogin } = this.state
+          const titleDisplayValue = isLogin ? 'block' : 'none'
+
+          // 使用if判断
+          let welcome = null
+          let btnText = null
+          if (this.state.isLogin) {
+            welcome = <h2>欢迎回来</h2>
+            btnText = '退出'
+          } else {
+            welcome = <h2>请登录～</h2>
+            btnText = '登陆'
+          }
+
+          return (
+            <div>
+              <span>第一种方式：</span>{welcome}
+              <span>第二种方式：</span>
+              {/* 三元运算符 */}
+              { this.state.isLogin ? <h2>欢迎回来</h2> : <h2>请登录～</h2> }
+              <span>第三种方式：</span>
+              {/* &&与运算 */}
+              { this.state.isLogin && <h2>欢迎回来</h2> }
+              {/* v-show实现 */}
+              <span>v-show</span>
+              <h2 style={{display: titleDisplayValue}}>看的到～</h2>
+              <button onClick={() => { this.handleClick() }}>{btnText}</button>
+            </div>
+          );
+        }
+
+        handleClick() {
+          this.setState({
+            isLogin: !this.state.isLogin
+          })
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+  </body>
+</html>
