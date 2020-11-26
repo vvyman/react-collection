@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+}
+
+.nav-item {
+  height: 44px;
+  text-align: center;
+}
+
+.nav-left, .nav-right {
+  width: 70px;
+}
+
+.nav-content {
+  flex: 1;
+}
