@@ -1,0 +1,8 @@
+.app > .title {
+  color: skyblue;
+  font-size: 40px;
+}
+
+.app > .title.active {
+  color: purple;
+}
